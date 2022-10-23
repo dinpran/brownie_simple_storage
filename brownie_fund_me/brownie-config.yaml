@@ -1,0 +1,38 @@
+dependencies:
+# you are telling brownie where it should download chainlink from 
+# the link is chainlink brownie contract
+# remix used to download from npm but brownie does not understands that so you should download it from github
+  # - <organization/repo>@<version>
+  - smartcontractkit/chainlink-brownie-contracts@1.1.1
+# telling brownie about chainlink
+# we need to tell compiler
+compiler:
+# after it compiled
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1'
+# This is telling you that when you run scripts take environment variable from .env file h
+dotenv: .env
+networks:
+  rinkeby:
+    eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+    verify: True
+  mainnet-fork:
+    eth_usd_price_feed: '0xb49f677943BC038e9857d61E7d053CaA2C1734C1'
+    verify: False
+  development:
+    verify: False
+  ganache-local2:
+    verify: False  
+  ganache-local5:
+    verify: False 
+# Is you add ${} then it will automati get transformed into environmental variable 
+#  In yaml if you use wallets to tell what type of wallet and when to use it 
+wallets:
+  from_key: ${PRIVATE_KEY}
+
+#rinkeby:
+#kovan:
+#mainnet:
+
+            
